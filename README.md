@@ -1,2 +1,3 @@
-# react-study
-学习react
+# React + Vite
+
+学习React
