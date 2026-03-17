@@ -5,6 +5,7 @@ import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
+  const [count, setCount] = useState(1);
   const products = [
     { title: '卷心菜', isFruit: false, id: 1 },
   { title: '大蒜', isFruit: false, id: 2 },
@@ -15,16 +16,19 @@ function App() {
       {product.title}
     </li>
   );
-
+  
+  function handleClick(){
+    setCount(count + 1);
+  }
   
   return (
     <div className='section'>
       <img src={reactLogo}></img>
       <br/>
       <h1>欢迎来到我的react应用</h1>
-      <MyButton></MyButton>
+      <MyButton count={count} onClick={handleClick}></MyButton>
       <br/>
-      <MyButton></MyButton>
+      <MyButton count={count} onClick={handleClick}></MyButton>
       <ul className='list'>
         {listItems}
       </ul>
@@ -32,13 +36,9 @@ function App() {
   )
 }
 
-function MyButton(){
-  const [count, setCount] = useState(0);
-  function handleClick(){
-    setCount(count + 1);
-  }
+function MyButton({count,onClick}){
   return (
-    <button onClick={handleClick}>按钮{count}</button>
+    <button onClick={onClick}>按钮{count}</button>
   )
 }
 
