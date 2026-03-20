@@ -1,22 +1,10 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import Game from './components/Game';
 
 function App() {
-  const [count, setCount] = useState(1);
-  const products = [
-    { title: '卷心菜', isFruit: false, id: 1 },
-  { title: '大蒜', isFruit: false, id: 2 },
-  { title: '苹果', isFruit: true, id: 3 },
-  ];
-  const listItems = products.map(product =>
-    <li key={product.id}>
-      {product.title}
-    </li>
-  );
-  
+  const [count, setCount] = useState(1);  
   function handleClick(){
     setCount(count + 1);
   }
@@ -27,14 +15,14 @@ function App() {
       <br/>
       <h1>欢迎来到我的react应用</h1>
       <MyButton count={count} onClick={handleClick}></MyButton>
-      <br/>
-      <MyButton count={count} onClick={handleClick}></MyButton>
-      <ul className='list'>
-        {listItems}
-      </ul>
+      <h2>井字棋游戏</h2>
+      <div className="board-center">
+      <Game/>
+      </div>
     </div>
   )
 }
+
 
 function MyButton({count,onClick}){
   return (
