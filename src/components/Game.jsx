@@ -38,10 +38,10 @@ function Square({ value, onSquareClick }) {
  * 棋盘组件
  * @returns {JSX.Element} 棋盘组件
  */
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay,winner }) {
     // const [squares, setSquares] = useState(Array(9).fill(null))
     // const [xIsNext, setXIsNext] = useState(true)
-    const winner = calculateWinner(squares)
+    
     let status
     if (winner) {
         status = 'Winner: ' + winner
@@ -91,6 +91,7 @@ function Game() {
     const [currentMove,setCurrentMove] = useState(0)
     const currentSquares = history[currentMove];
     const xIsNext = currentMove % 2 === 0
+    const winner = calculateWinner(currentSquares)
 
     function handlePlay(nextSquares) {
         const nextHistory = [...history.slice(0,currentMove+1),nextSquares]
@@ -112,7 +113,7 @@ function Game() {
     return (
         <div className="game">
             <div className="game-board">
-                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+                <Board winner={winner} xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
             </div>
             <div>{currentMove}</div>
             <div className="game-info">

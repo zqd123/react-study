@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import Game from './components/Game';
+import Product from './components/Product';
+
 
 function App() {
   const [count, setCount] = useState(1);  
@@ -18,6 +20,10 @@ function App() {
       <h2>井字棋游戏</h2>
       <div className="board-center">
       <Game/>
+      </div>
+      <h2>产品列表可搜索</h2>
+      <div className="product">
+        <Product></Product>
       </div>
     </div>
   )
