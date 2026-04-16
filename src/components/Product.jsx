@@ -18,18 +18,94 @@ function ProductRow({product}){
         <td>{product.price}</td>
     </tr>
 }
-function Product(){
-
+/**
+ * 商品类别组件
+ * @param {*} param0 
+ * @returns 
+ */
+function ProductCategoryRow({category}){
+    return (
+        <tr colSpan="2">
+            <th>{category}</th>
+        </tr>
+    )
+}
+/**
+ * 搜索框
+ * @returns 
+ */
+function SearchBar(){
     return (
         <>
-        <input placeholder="Searce..."></input>
-        <div>123</div>
+        <input placeholder="Search..." />
+        <p>
+          <input type="checkbox" />
+          {' '}
+          Only show products in stock
+        </p>
+        </>
+    )
+}
+/**
+ * 商品表格组件
+ * @returns 
+ */
+function ProductTable({products}){
+  const rows = [];
+    let lastCategory = null;
+    products.forEach((product) => {
+      if (product.category !== lastCategory) {
+        rows.push(
+          <ProductCategoryRow
+            category={product.category}
+            key={product.category}
+          />
+        );  
+        lastCategory = product.category;
+        }
+        rows.push(
+          <ProductRow
+            product={product}
+            key={product.name}
+          />
+        );
+      });
+    return (
+        <>
         <table>
-
-        <ProductRow product={PRODUCTS[0]}/>
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {rows}
+            </tbody>
         </table>
         </>
     )
 }
+/**
+ * 商品组件
+ * @returns 
+ */
+function FilterableProductTable({products}){
+    return (
+        <>
+        <SearchBar />
+        <ProductTable products={products} />
+        </>
+    )
+
+}
+function Product(){
+    return (
+        <>
+        <FilterableProductTable products={PRODUCTS}/>
+        </>
+    )
+}
+
 
 export default Product
